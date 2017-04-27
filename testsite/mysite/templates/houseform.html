@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <title>House/Villa Details</title>
+<!--     <script type="text/javascript">
+        $(function() {
+            $(".datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                yearRange: "1900:2012",
+        });
+    });
+    </script> -->
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="jumbotron">
+                <center><h2><b>Enter Property Details</b></h2></center>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

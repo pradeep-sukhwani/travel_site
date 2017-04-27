@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<head>
+    <title>House List</title>
+    <script type="text/javascript" src="{% static 'js/sorter.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/filter.css' %}">
+</head>
+<body>
+    <form>
+        <div class="container">
+            <div class="content" style="width: 1030px; padding-left: 80px; margin-left: 20px;">
+                <div class="jumbotron">
+                    {% if houses %}
+                        <!-- <center><h2>List of houses</h2></center> -->
+                        {% for new_house in houses %}
+                            <div id="pics">
+                                <img src="{{ new_house.image.url }}" alt="" style="width: 290px;">
+                                <p id="text_on_image"><b>₹ {{ new_house.amount }}/night</b></p>
+                                <center><h5>{{ new_house.title }}</h5></center>
+                                <center><h5 style="font-size: 14px;">Location: {{ new_house.location }}</h5></center>
+                                <center><p style="font-size: 11px;">Sleep: {{ new_house.sleep }} | Bath: {{ new_house.bathroom }} | Bed: {{ new_house.bedroom }}</p></center>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="container" style="margin-right: 130px;">
+                            <div class="content" style="width: 523px;">
+                                <div class="jumbotron">
+                                    <p>No registed houses yet, you can add <a href="/house/add">here</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if houses %}
+            <div id="filter_list">
+                <h3>Filter By</h3>
+    <!--             <h4>City</h4>
+                {% for new_city in my_city_list %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="amenities"> {{ new_city }} <br>
+                {% endfor %} -->
+
+                <h4>Bedrooms</h4>
+                <select>
+                    <option value="1"> Min 1 Bedroom</option>
+                    <option value="2"> Min 2 Bedrooms</option>
+                    <option value="3"> Min 3 Bedrooms</option>
+                    <option value="4"> Min 4 Bedrooms</option>
+                    <option value="5"> Min 5 Bedrooms</option>
+                    <option value="6"> Min 6 Bedrooms</option>
+                    <option value="7"> Min 7 Bedrooms</option>
+                    <option value="8"> Min 8 Bedrooms</option>
+                    <option value="9"> Min 9 Bedrooms</option>
+                    <option value="10"> Min 10 Bedrooms</option>
+                </select>
+
+                <h4>Bathrooms</h4>
+                <select>
+                    <option value="1"> Min 1 Bathroom</option>
+                    <option value="2"> Min 2 Bathrooms</option>
+                    <option value="3"> Min 3 Bathrooms</option>
+                    <option value="4"> Min 4 Bathrooms</option>
+                    <option value="5"> Min 5 Bathrooms</option>
+                    <option value="6"> Min 6 Bathrooms</option>
+                    <option value="7"> Min 7 Bathrooms</option>
+                    <option value="8"> Min 8 Bathrooms</option>
+                    <option value="9"> Min 9 Bathrooms</option>
+                    <option value="10"> Min 10 Bathrooms</option>
+                </select>
+
+                <h4>Property Allows</h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="non_veg"> Non-Veg Food
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="alcohol"> Alcohol
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="pet_allowed"> Pets
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="smoke"> Smoking Inside &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property
+
+                <h4>Amenities</h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="checkbox_swimming_pool" name="swimming"> Swimming Pool
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="gym"> Gym
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="power_backup"> Power Backup
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="television"> Television
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="spa"> Spa
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="cook_on_call"> Cook On Call
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="parking"> Parking
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="house_keeping"> House Keeping
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="air_conditioning"> Air Conditioning
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="internet"> Internet
+                <br>
+                <br>
+                <br>
+                <br>
+                <input type="submit" name="submit" value="Apply filters">
+            </div>
+        {% endif %}
+    </form>
+</body>
+{% endblock %}

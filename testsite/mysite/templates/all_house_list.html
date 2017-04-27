@@ -1,0 +1,100 @@
+{% load static %}
+
+<head>
+    <title>House List</title>
+    <style type="text/css">
+    
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+    <script type="text/javascript" src="{% static 'js/sorter.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/filter.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="content" style="width: 1050px; padding-left: 80px">
+            <div class="jumbotron">
+                {% if houses %}
+                    <center><h2>List of houses</h2></center>
+                    <table id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Available From</th>
+                                <th>Available Till</th>
+                                <th>City</th>
+                                <th>Room</th>
+                                <th onclick="sortTable(0)">Amount⇞⇟</th>
+                                <th>Sleep</th>
+                            </tr>
+                        </thead>
+
+                        {% for new_house in houses %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ new_house.title }}</td>
+                                    <td><img src="{{ new_house.image.url }}" width="42" height="42"></td>
+                                    <td>{{ new_house.available_from }}</td>
+                                    <td>{{ new_house.available_till }}</td>
+                                    <td>{{ new_house.city }}</td>
+                                    <td>{{ new_house.room }}</td>
+                                    <td>₹ {{ new_house.amount }}</td>
+                                    <td>{{ new_house.sleep }}</td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if houses %}
+        <div id="filter_list">
+            <h3>Filter By</h3>
+            <h4>City</h4>
+            {% for new_city in my_city_list %}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="amenities"> {{ new_city }} <br>
+            {% endfor %}
+
+            <h4>Property Allows</h4>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="non_veg"> Non-Veg Food
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="alcohol"> Alcohol
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="pet_allowed"> Pets
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="smoke"> Smoking Inside &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property
+
+            <h4>Amenities</h4>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="swimming_pool"> Swimming Pool
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="gym"> Gym
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="power_backup"> Power Backup
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="television"> Television
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="spa"> Spa
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="cook_on_call"> Cook On Call
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="parking"> Parking
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="house_keeping"> House Keeping
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="air_conditioning"> Air Conditioning
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="internet"> Internet
+            <br>
+            &nbsp;
+        </div>
+    {% endif %}
+</body>

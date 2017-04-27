@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="content" style="width: 600px;">
+        <div class="jumbotron">
+            <h1>Hello, {{ user.get_username }}</h1>
+            <p>Want to add <a href="house/add">new house</a> or see all your <a href="/house/list">house list</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
